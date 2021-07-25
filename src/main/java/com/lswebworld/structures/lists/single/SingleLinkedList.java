@@ -57,6 +57,13 @@ public class SingleLinkedList {
     newNode.setNext(head);
     head = newNode;
   }
+
+  /**
+   * Clears the List.
+   */
+  public void clear() {
+    head = null;
+  }
 }
 
 

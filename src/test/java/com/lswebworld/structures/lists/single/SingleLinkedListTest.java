@@ -87,9 +87,20 @@ class SingleLinkedListTest {
       head = head.getNext();
     }
     assertThat(values).hasSize(3).containsExactly(3,2,1);
-
-
-
   }
+
+  @Test
+  void testClearList() {
+    SingleLinkedList list = new SingleLinkedList();
+
+    list.setHead(new Node(1));
+    list.push(2);
+    list.push(3);
+
+    list.clear();
+
+    assertThat(list.getHead()).isNull();
+  }
+
 
 }
