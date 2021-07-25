@@ -102,5 +102,167 @@ class SingleLinkedListTest {
     assertThat(list.getHead()).isNull();
   }
 
+  @Test
+  void testSize() {
+    SingleLinkedList list = new SingleLinkedList();
+
+    list.setHead(new Node(1));
+    list.push(2);
+    list.push(3);
+
+    assertThat(list.size()).isEqualTo(3);
+  }
+
+  @Test
+  void testSizeRecusive() {
+    SingleLinkedList list = new SingleLinkedList();
+
+    list.setHead(new Node(1));
+    list.push(2);
+    list.push(3);
+
+    assertThat(list.size(list.getHead())).isEqualTo(3);
+
+    assertThat(list.size(list.getHead().getNext())).isEqualTo(2);
+
+    assertThat(list.size(null)).isEqualTo(0);
+  }
+
+  @Test
+  void testFindByValue() {
+    SingleLinkedList list = new SingleLinkedList();
+
+    list.setHead(new Node(1));
+    list.push(2);
+    list.push(3);
+
+    assertThat(list.size()).isEqualTo(3);
+
+    Node node = list.find(3);
+    assertThat(node).isNotNull();
+    assertThat(node.getData()).isEqualTo(3);
+
+  }
+
+  @Test
+  void testFindByNode() {
+    SingleLinkedList list = new SingleLinkedList();
+
+    list.setHead(new Node(1));
+    list.push(2);
+    list.push(3);
+
+    Node node = list.find(list.getHead(), 2);
+
+    assertThat(node).isNotNull();
+    assertThat(node.getData()).isEqualTo(2);
+  }
+
+  @Test
+  void testFindNotPresent() {
+    SingleLinkedList list = new SingleLinkedList();
+
+    list.setHead(new Node(1));
+    list.push(2);
+    list.push(3);
+    Node node = list.find(4);
+
+    assertThat(node).isNull();
+  }
+
+  @Test
+  void testFindNotPresentRecursive() {
+    SingleLinkedList list = new SingleLinkedList();
+
+    list.setHead(new Node(1));
+    list.push(2);
+    list.push(3);
+    Node node = list.find(list.getHead(), 4);
+    assertThat(node).isNull();
+  }
+
+  @Test
+  void testIndexOf() {
+    SingleLinkedList list = new SingleLinkedList();
+
+    list.setHead(new Node(1));
+    list.push(2);
+    list.push(3);
+    list.push(4);
+
+    Node node = list.indexOf(2);
+
+    assertThat(node).isNotNull();
+    assertThat(node.getData()).isEqualTo(2);
+  }
+
+  @Test
+  void testIndexOfStartNode() {
+    SingleLinkedList list = new SingleLinkedList();
+
+    list.setHead(new Node(1));
+    list.push(2);
+    list.push(3);
+    list.push(4);
+
+    Node node = list.indexOf(list.getHead(), 3);
+
+    assertThat(node).isNotNull();
+    assertThat(node.getData()).isEqualTo(1);
+
+  }
+
+  @Test
+  void testIndexOfNoValueAtIndex() {
+    SingleLinkedList list = new SingleLinkedList();
+
+    list.setHead(new Node(1));
+    list.push(2);
+    list.push(3);
+
+    Node node = list.indexOf(4);
+    assertThat(node).isNull();
+  }
+
+  @Test
+  void testIndexOfRecursiveNoValue() {
+    SingleLinkedList list = new SingleLinkedList();
+
+    list.setHead(new Node(1));
+    list.push(2);
+    list.push(3);
+
+    Node node = list.indexOf(list.getHead(), 5);
+    assertThat(node).isNull();
+  }
+
+  @Test
+  void testGetMiddleEven() {
+    SingleLinkedList list = new SingleLinkedList();
+
+    list.setHead(new Node(1));
+    list.push(2);
+    list.push(3);
+    list.push(4);
+
+    Node node = list.getMiddleNode();
+    assertThat(node).isNotNull();
+    assertThat(node.getData()).isEqualTo(2);
+  }
+
+  @Test
+  void testGetMiddleOdd() {
+    SingleLinkedList list = new SingleLinkedList();
+
+    list.setHead(new Node(1));
+    list.push(2);
+    list.push(3);
+    list.push(4);
+    list.push(5);
+
+    Node node = list.getMiddleNode();
+    assertThat(node).isNotNull();
+    assertThat(node.getData()).isEqualTo(3);
+  }
 
 }
